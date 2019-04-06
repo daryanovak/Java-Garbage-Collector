@@ -6,3 +6,11 @@ wget http://ftp.byfly.by/pub/apache.org/tomcat/tomcat-8/v8.5.37/bin/apache-tomca
 unzip apache-tomcat-8.5.37.zip
 mkdir -p /var/lib/tomcat/
 cp -rf ./apache-tomcat-8.5.37/* /var/lib/tomcat/
+#Give needed permissions to start apache server
+chmod 654 /var/lib/tomcat/bin/*.sh
+chown vagrant: -R /var/lib/tomcat/
+#Relocate our app into tomcat/webapps to do it executable
+sudo cp /vagrant/TestApp.war /var/lib/tomcat/webapps/
+#Make some waiting pause
+sleep 5
+
