@@ -14,3 +14,19 @@ sudo cp /vagrant/TestApp.war /var/lib/tomcat/webapps/
 #Make some waiting pause
 sleep 5
 
+#Adding to our tomcat service needed components
+chown vagrant: /var/lib/tomcat/webapps/TestApp.war
+#Relocate error.jpg for custom 500 error
+#Start service tomcat 
+/var/lib/tomcat/bin/startup.sh
+sleep 2
+chown vagrant: -R /var/lib/tomcat/webapps/TestApp
+sleep 2
+sudo cp /vagrant/error.jpg /var/lib/tomcat/webapps/TestApp
+
+sudo cp /vagrant/gson-2.8.1.jar /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
+sudo cp /vagrant/jstl-1.2.jar /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
+chown vagrant: -R /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
+chown vagrant: -R /var/lib/tomcat/
+sudo /var/lib/tomcat/bin/startup.sh
+
