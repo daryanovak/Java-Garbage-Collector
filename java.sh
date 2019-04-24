@@ -40,5 +40,8 @@ export JAVA_OPTS="-Xss1024k \
 -XX:+HeapDumpOnOutOfMemoryError \
 -XX:HeapDumpPath=/var/lib/tomcat/logs \
 -Dcom.sun.management.jmxremote=true \
+-Dcom.sun.management.jmxremote.port=9999 \
+-Dcom.sun.management.jmxremote.ssl=false \
+-Dcom.sun.management.jmxremote.authenticate=false \
 fi
 sleep 2
