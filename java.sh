@@ -14,10 +14,7 @@ sudo cp /vagrant/TestApp.war /var/lib/tomcat/webapps/
 #Make some waiting pause
 sleep 5
 
-#Adding to our tomcat service needed components
 chown vagrant: /var/lib/tomcat/webapps/TestApp.war
-#Relocate error.jpg for custom 500 error
-#Start service tomcat 
 /var/lib/tomcat/bin/startup.sh
 sleep 2
 chown vagrant: -R /var/lib/tomcat/webapps/TestApp
@@ -30,3 +27,18 @@ chown vagrant: -R /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
 chown vagrant: -R /var/lib/tomcat/
 sudo /var/lib/tomcat/bin/startup.sh
 
+if [ -f "/var/lib/tomcat/bin/setenv.sh"  ]
+	then rm -rf /var/lib/tomcat/bin/setenv.sh
+else
+chown vagrant: -R /var/lib/tomcat/logs/*
+bash -c 'cat<< EOF > /var/lib/tomcat/bin/setenv.sh
+export JAVA_OPTS="-Xss1024k \
+-Xms256m \
+-Xmx512m \
+-verbose:gc \
+-Xloggc:/var/lib/tomcat/logs/gc.log \
+-XX:+HeapDumpOnOutOfMemoryError \
+-XX:HeapDumpPath=/var/lib/tomcat/logs \
+-Dcom.sun.management.jmxremote=true \
+fi
+sleep 2
