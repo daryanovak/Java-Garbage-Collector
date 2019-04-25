@@ -43,5 +43,7 @@ export JAVA_OPTS="-Xss1024k \
 -Dcom.sun.management.jmxremote.port=9999 \
 -Dcom.sun.management.jmxremote.ssl=false \
 -Dcom.sun.management.jmxremote.authenticate=false \
+-Djava.rmi.server.hostname=192.168.56.112"
+EOF'
 fi
 sleep 2
