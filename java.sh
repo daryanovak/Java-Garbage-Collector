@@ -47,3 +47,7 @@ export JAVA_OPTS="-Xss1024k \
 EOF'
 fi
 sleep 2
+sed -i '/<servlet-class>com.epam.nix.java.testapp.servlet.MemoryLeakServlet<\/servlet-class>/a<multipart-config>\n<location>\/tmp<\/location>\n<max-file-size>20848820</\max-file-size>\n<max-request-size>418018841<\/max-request-size>\n<file-size-threshold>1048576<\/file-size-threshold>\n</\multipart-config>' /var/lib/tomcat/webapps/TestApp/WEB-INF/web.xml
+sleep 3
+chmod +x /var/lib/tomcat/bin/setenv.sh
+chown vagrant: /var/lib/tomcat/bin/setenv.sh
