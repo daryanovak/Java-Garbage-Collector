@@ -25,6 +25,14 @@ sleep 2
 chown tomcat: -R /var/lib/tomcat/webapps/TestApp
 sleep 2
 
+#Resolve 2 errors 
+#1st error
+cp /opt/gson-2_8_1.jar /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
+cp /opt/jstl-1_2.jar /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
+chown tomcat: -R /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
+chown tomcat: -R /var/lib/tomcat/
+/var/lib/tomcat/bin/startup.sh
+
 if [ -f "/var/lib/tomcat/bin/setenv.sh"  ]
 	then rm -rf /var/lib/tomcat/bin/setenv.sh
 else
