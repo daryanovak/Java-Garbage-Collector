@@ -53,8 +53,7 @@ chmod +x /var/lib/tomcat/bin/setenv.sh
 chown vagrant: /var/lib/tomcat/bin/setenv.sh
 sudo /var/lib/tomcat/bin/shutdown.sh
 sudo /var/lib/tomcat/bin/startup.sh
-sudo /var/lib/tomcat/bin/vartran.sh
-sudo /var/lib/tomcat/bin/servett.sh
+
 
 
 
