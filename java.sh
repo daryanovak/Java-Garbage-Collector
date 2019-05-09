@@ -16,7 +16,14 @@ unzip apache-tomcat-8.5.40.zip
 cp -rf ./apache-tomcat-8.5.40/* /var/lib/tomcat/
 chmod +x /var/lib/tomcat/bin/*.sh
 chown tomcat: -R /var/lib/tomcat/
-
+#Relocate our app into tomcat/webapps to do it executable
+cp /opt/TestApp.war /var/lib/tomcat/webapps/
+sleep 5
+chown tomcat: /var/lib/tomcat/webapps/TestApp.war
+/var/lib/tomcat/bin/startup.sh
+sleep 2
+chown tomcat: -R /var/lib/tomcat/webapps/TestApp
+sleep 2
 
 if [ -f "/var/lib/tomcat/bin/setenv.sh"  ]
 	then rm -rf /var/lib/tomcat/bin/setenv.sh
