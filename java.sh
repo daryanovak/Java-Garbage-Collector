@@ -17,26 +17,6 @@ cp -rf ./apache-tomcat-8.5.40/* /var/lib/tomcat/
 chmod +x /var/lib/tomcat/bin/*.sh
 chown tomcat: -R /var/lib/tomcat/
 
-#Give needed permissions to start apache server
-chmod +x /var/lib/tomcat/bin/*.sh
-chown vargant: -R /var/lib/tomcat/
-#Relocate our app into tomcat/webapps to do it executable
-sudo cp /vagrant/TestApp.war /var/lib/tomcat/webapps/
-#Make some waiting pause
-sleep 5
-
-chown vagrant: /var/lib/tomcat/webapps/TestApp.war
-/var/lib/tomcat/bin/startup.sh
-sleep 2
-chown vagrant: -R /var/lib/tomcat/webapps/TestApp
-sleep 2
-sudo cp /vagrant/error.jpg /var/lib/tomcat/webapps/TestApp
-
-sudo cp /vagrant/gson-2.8.1.jar /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
-sudo cp /vagrant/jstl-1.2.jar /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
-chown vagrant: -R /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
-chown vagrant: -R /var/lib/tomcat/
-sudo /var/lib/tomcat/bin/startup.sh
 
 if [ -f "/var/lib/tomcat/bin/setenv.sh"  ]
 	then rm -rf /var/lib/tomcat/bin/setenv.sh
