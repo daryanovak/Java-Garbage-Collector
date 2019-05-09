@@ -10,9 +10,13 @@ fi
 mkdir -p /var/lib/tomcat
 groupadd tomcat
 useradd -M -s /bin/nologin -g tomcat -d /var/lib/tomcat tomcat
+#Download and install TOMCAT
+wget http://ftp.byfly.by/pub/apache.org/tomcat/tomcat-8/v8.5.40/bin/apache-tomcat-8.5.40.zip
+unzip apache-tomcat-8.5.40.zip
+cp -rf ./apache-tomcat-8.5.40/* /var/lib/tomcat/
+chmod +x /var/lib/tomcat/bin/*.sh
+chown tomcat: -R /var/lib/tomcat/
 
-mkdir -p /var/lib/tomcat/
-cp -rf ./apache-tomcat-8.5.37/* /var/lib/tomcat/
 #Give needed permissions to start apache server
 chmod +x /var/lib/tomcat/bin/*.sh
 chown vargant: -R /var/lib/tomcat/
