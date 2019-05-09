@@ -6,6 +6,10 @@ yum install jdk-8u131-linux-x64.rpm -y
 else
 	echo "File jdk-8u131-linux-x64.rpm exists and is installed"
 fi
+#Adding specific user and group for tomcat service
+mkdir -p /var/lib/tomcat
+groupadd tomcat
+useradd -M -s /bin/nologin -g tomcat -d /var/lib/tomcat tomcat
 
 mkdir -p /var/lib/tomcat/
 cp -rf ./apache-tomcat-8.5.37/* /var/lib/tomcat/
