@@ -1,3 +1,4 @@
+#Download and install OPENJDK
 yum install unzip wget tar net-tools -y
 cd . 
 if [[ ! -f "./jdk-8u131-linux-x64.rpm" ]]
@@ -24,7 +25,6 @@ chown tomcat: /var/lib/tomcat/webapps/TestApp.war
 sleep 2
 chown tomcat: -R /var/lib/tomcat/webapps/TestApp
 sleep 2
-
 #Resolve 2 errors 
 #1st error
 cp /opt/gson-2_8_1.jar /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
@@ -32,7 +32,6 @@ cp /opt/jstl-1_2.jar /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
 chown tomcat: -R /var/lib/tomcat/webapps/TestApp/WEB-INF/lib
 chown tomcat: -R /var/lib/tomcat/
 /var/lib/tomcat/bin/startup.sh
-
 if [ -f "/var/lib/tomcat/bin/setenv.sh"  ]
 	then rm -rf /var/lib/tomcat/bin/setenv.sh
 else
@@ -46,20 +45,17 @@ export JAVA_OPTS="-Xss1024k \
 -XX:+HeapDumpOnOutOfMemoryError \
 -XX:HeapDumpPath=/var/lib/tomcat/logs \
 -Dcom.sun.management.jmxremote=true \
--Dcom.sun.management.jmxremote.port=9999 \
+-Dcom.sun.management.jmxremote.port=12831 \
 -Dcom.sun.management.jmxremote.ssl=false \
 -Dcom.sun.management.jmxremote.authenticate=false \
--Djava.rmi.server.hostname=192.168.56.112"
+-Djava.rmi.server.hostname=172.17.0.2"
 EOF'
 fi
 sleep 2
 sed -i '/<servlet-class>com.epam.nix.java.testapp.servlet.MemoryLeakServlet<\/servlet-class>/a<multipart-config>\n<location>\/tmp<\/location>\n<max-file-size>20848820</\max-file-size>\n<max-request-size>418018841<\/max-request-size>\n<file-size-threshold>1048576<\/file-size-threshold>\n</\multipart-config>' /var/lib/tomcat/webapps/TestApp/WEB-INF/web.xml
 sleep 3
 chmod +x /var/lib/tomcat/bin/setenv.sh
-chown vagrant: /var/lib/tomcat/bin/setenv.sh
-sudo /var/lib/tomcat/bin/shutdown.sh
-sudo /var/lib/tomcat/bin/startup.sh
-
-
-
+chown tomcat: /var/lib/tomcat/bin/setenv.sh
+/var/lib/tomcat/bin/shutdown.sh
+/var/lib/tomcat/bin/startup.sh
 
