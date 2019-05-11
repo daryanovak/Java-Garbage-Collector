@@ -36,7 +36,7 @@ chown tomcat: -R /var/lib/tomcat/
 if [ -f "/var/lib/tomcat/bin/setenv.sh"  ]
 	then rm -rf /var/lib/tomcat/bin/setenv.sh
 else
-chown vagrant: -R /var/lib/tomcat/logs/*
+chown tomcat: -R /var/lib/tomcat/logs/*
 bash -c 'cat<< EOF > /var/lib/tomcat/bin/setenv.sh
 export JAVA_OPTS="-Xss1024k \
 -Xms256m \
